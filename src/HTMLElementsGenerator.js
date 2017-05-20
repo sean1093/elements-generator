@@ -8,12 +8,14 @@
 (function () {
     "use strict";
 
+    let materialEnable = false;
+
     const $g = {
-        createElement: (type, id = type+"_"+_innerTool.getRandomId(), classes) => {
+        createElement: (type, id = _innerTool.getRandomId(type), classes) => {
             if(!type) return null;
             let e = document.createElement(type);
             e.id = id;
-            _innerTool.appendClasses(e, classes);
+            _innerTool.appendClassesToElement(e, classes);
             return e;
         },
         createBtn: (text, id, classes) => {
@@ -41,8 +43,13 @@
         * @param classes array / string
         * @return
         */
-        createSelect: (id, options, classes) => {
+        createSelect: (id, options, classes, initText) => {
             let s = $g.createElement("select", id, classes);
+            let optsDisabled = $g.createElement("option");
+            optsDisabled.disabled = "disabled";
+            optsDisabled.selected = "selected";
+            optsDisabled.innerText = initText || "Choose your option";
+            s.appendChild(optsDisabled);
             for(let o of options) {
                 let opts = $g.createElement("option", o.value);
                 opts.value = o.value;
@@ -52,22 +59,34 @@
             return s;
         }
     };
-
+                
     const $m = {
-        createNavbar : (header) => {
-            let outer = $g.createElement("div", "navbar_outer", "navbar-fixed");
-            let nav = $g.createElement("nav");
+        enable: () => materialEnable = true,
+        createNavbar : (header, id, classes) => {
+            $m.enable();
+            const mClasses = "navbar-fixed";
+            classes = _innerTool.appendClassesToExistClass(classes, mClasses);
+            let outer = $g.createElement("div", id, "navbar-fixed");
+            let nav = $g.createElement("nav", undefined, classes);
             let inner = $g.createElement("div", "navbar_inner", "nav-wrapper");
             let a = $g.createLink("#", header, "header_link", "brand-logo");
             inner.appendChild(a);
             nav.appendChild(inner);
             outer.appendChild(nav);
             return outer;
+        },
+        createBtn: (text, id, classes) => {
+            $m.enable();
+            const mClasses = "btn waves-effect waves-light";
+            classes = _innerTool.appendClassesToExistClass(classes, mClasses);
+            let b = $g.createBtn(text, id, classes);
+            b.type = "submit";
+            return b;
         }
     };
 
     const _innerTool = {
-        appendClasses: (e, classes) => {
+        appendClassesToElement: (e, classes) => {
             if(classes !== undefined) {
                 if(Array.isArray(classes)) {
                     for(let c of classes) {
@@ -79,8 +98,28 @@
                 }               
             }
         },
-        getRandomId: () => Math.floor(Math.random()*100000)
+        appendClassesToExistClass: (eClasses, nClasses) => {
+            if(eClasses !== undefined) {
+                if(Array.isArray(eClasses)) {
+                    eClasses.push(nClasses);
+                }
+                else {
+                    eClasses += " " + nClasses;
+                }               
+            }
+            else {
+                eClasses = nClasses;
+            }
+            return eClasses;
+        },
+        getRandomId: (type) => type + "_" + Math.floor(Math.random()*100000)
     };
+
+    $(document).ready(function() {
+        if(materialEnable) {
+            $('select').material_select();
+        }
+    });
 
     window.$g = $g;
     window.$m = $m;

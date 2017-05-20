@@ -8,12 +8,13 @@
 (function () {
     "use strict";
 
-    var nav = $m.createNavbar("LOGO");
+    var nav = $m.createNavbar("LOGO", "nav", "blue");
 
     var div = $g.createElement("div");
     var div2 = $g.createElement("div", "id", ["a", "tag"]);
 
     var btn = $g.createBtn("this is btn");
+    var Mbtn = $m.createBtn("this is btn", "M_btn", "blue");
 
 
     var input = $g.createInput("input", "please input text");
@@ -21,7 +22,7 @@
         {"value": "select1", "text": "this is 1"},
         {"value": "select2", "text": "this is 2"},
         {"value": "select3", "text": "this is 3"}
-        ]);
+        ], null, "please select");
 
 
     var app = document.getElementById("app");
@@ -29,6 +30,7 @@
     app.appendChild(div);
          app.appendChild(div2);
          app.appendChild(btn);
+         app.appendChild(Mbtn);
          app.appendChild(input);
  app.appendChild(select);
 })();
