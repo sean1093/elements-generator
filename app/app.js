@@ -9,6 +9,9 @@
     "use strict";
 
     var nav = $m.createNavbar("LOGO", "nav", "blue");
+    var side = $m.createSideNav("side");
+    var openSide = $m.openSideNavBtn("Open Side", "side");
+    
 
     var div = $g.createElement("div");
     var div2 = $g.createElement("div", "id", ["a", "tag"]);
@@ -27,6 +30,9 @@
 
     var app = document.getElementById("app");
     app.appendChild(nav);
+    app.appendChild(side);
+    app.appendChild(openSide);
+
     app.appendChild(div);
          app.appendChild(div2);
          app.appendChild(btn);

@@ -50,12 +50,14 @@
             optsDisabled.selected = "selected";
             optsDisabled.innerText = initText || "Choose your option";
             s.appendChild(optsDisabled);
-            for(let o of options) {
-                let opts = $g.createElement("option", o.value);
-                opts.value = o.value;
-                opts.innerText = o.text;
-                s.appendChild(opts);
-            } 
+            if(_innerTool.isNull(options)) {
+                for(let o of options) {
+                    let opts = $g.createElement("option", o.value);
+                    opts.value = o.value;
+                    opts.innerText = o.text;
+                    s.appendChild(opts);
+                } 
+            }
             return s;
         }
     };
@@ -82,12 +84,35 @@
             let b = $g.createBtn(text, id, classes);
             b.type = "submit";
             return b;
+        },
+        createSideNav: (id, classes, objects) => {
+            $m.enable();
+            const mClasses = "side-nav";
+            classes = _innerTool.appendClassesToExistClass(classes, mClasses);
+            let outer = $g.createElement("div");
+            let s = $g.createElement("ul", id, classes);  
+            if(_innerTool.isNull(objects)) {         
+                for(let o of objects) {
+                    let li = $g.createElement("li");
+                    li.appendChild(o);
+                    s.appendChild(li);
+                } 
+            }
+            outer.appendChild(s);
+            return outer;
+        },
+        openSideNavBtn: (text, sideNavId, classes) => {
+            const mClasses = "open-side";
+            classes = _innerTool.appendClassesToExistClass(classes, mClasses);
+            let b = $m.createBtn(text, "", classes);
+            b.setAttribute("data-activates", sideNavId);
+            return b;
         }
     };
 
     const _innerTool = {
         appendClassesToElement: (e, classes) => {
-            if(classes !== undefined) {
+            if(_innerTool.isNull(classes)) {
                 if(Array.isArray(classes)) {
                     for(let c of classes) {
                         e.className += " " + c;
@@ -99,7 +124,7 @@
             }
         },
         appendClassesToExistClass: (eClasses, nClasses) => {
-            if(eClasses !== undefined) {
+            if(_innerTool.isNull(eClasses)) {
                 if(Array.isArray(eClasses)) {
                     eClasses.push(nClasses);
                 }
@@ -112,12 +137,14 @@
             }
             return eClasses;
         },
-        getRandomId: (type) => type + "_" + Math.floor(Math.random()*100000)
+        getRandomId: (type) => type + "_" + Math.floor(Math.random()*100000),
+        isNull: (t) => (t !== undefined && t !== null)
     };
 
     $(document).ready(function() {
         if(materialEnable) {
             $('select').material_select();
+            $('.open-side').sideNav();
         }
     });
 
