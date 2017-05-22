@@ -10,7 +10,7 @@
 
     var nav = $m.createNavbar("LOGO", "nav", "blue");
     var side = $m.createSideNav("side");
-    var openSide = $m.openSideNavBtn("Open Side", "side");
+    var openSide = $m.openSideNavBtn("Open Side", "side", "openSide");
     
 
     var div = $g.createElement("div");
