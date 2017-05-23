@@ -21,11 +21,24 @@
 
 
     var input = $g.createInput("input", "please input text");
-    var select = $g.createSelect("select", [
+    var select = $g.createSelect("selectID", [
         {"value": "select1", "text": "this is 1"},
         {"value": "select2", "text": "this is 2"},
         {"value": "select3", "text": "this is 3"}
         ], null, "please select");
+        select.onchange = function(e) {
+            console.log(e.target.value);
+
+            $g.updateSelectOptions("selectID2",[
+                {"value": "select1", "text": "this is 1"},
+                {"value": "select2", "text": "this is 2"},
+                {"value": "select3", "text": "this is 3"}
+            ]);
+
+        };
+
+    var select2 = $g.createSelect("selectID2", [], null, "please select");
+
 
 
     var app = document.getElementById("app");
@@ -39,4 +52,5 @@
          app.appendChild(Mbtn);
          app.appendChild(input);
  app.appendChild(select);
+ app.appendChild(select2);
 })();

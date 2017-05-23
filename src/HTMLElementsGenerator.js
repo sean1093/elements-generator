@@ -36,6 +36,16 @@
             }
             return eClasses;
         },
+        appendOptions: function(s, options) {
+            if(_innerTool.isNull(options)) {
+                for(var o in options) {
+                    var opts = $g.createElement("option", options[o].value);
+                    opts.value = options[o].value;
+                    opts.innerText = options[o].text;
+                    s.appendChild(opts);
+                } 
+            }
+        },
         getRandomId: function(type) {
             return type + "_" + Math.floor(Math.random()*100000);
         },
@@ -77,15 +87,15 @@
             optsDisabled.selected = "selected";
             optsDisabled.innerText = initText || "Choose your option";
             s.appendChild(optsDisabled);
-            if(_innerTool.isNull(options)) {
-                for(var o in options) {
-                    var opts = $g.createElement("option", options[o].value);
-                    opts.value = options[o].value;
-                    opts.innerText = options[o].text;
-                    s.appendChild(opts);
-                } 
-            }
+            _innerTool.appendOptions(s, options);
             return s;
+        },
+        updateSelectOptions: function(id, options) {
+            var select = document.getElementById(id);
+            _innerTool.appendOptions(select, options);
+            if(_materialEnable) {
+                $('select').material_select();
+            }
         }
     };
                 
@@ -138,7 +148,7 @@
     };
 
     $(document).ready(function() {
-        if(materialEnable) {
+        if(_materialEnable) {
             $('select').material_select();
             $('.open-side').sideNav();
         }
