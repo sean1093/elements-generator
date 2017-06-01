@@ -33,9 +33,9 @@ When you want to use element generator extension, you need to include following 
 /**
  * createElement
  *
- * @param {string} type, html tag type, ex: div, img, span ...
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} type html tag type, ex: div, img, span ...
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom element
  */
 var element = $g.createElement(type, id, classes);
@@ -53,9 +53,9 @@ var div2 = $g.createElement("div", "id", ["a", "tag"]);
 /**
  * createBtn
  *
- * @param {string} text, button text
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} text button text
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom button
  */
 var btn = $g.createBtn(text, id, classes);
@@ -72,9 +72,9 @@ var btn = $g.createBtn("Click me!");
 /**
  * createInput
  *
- * @param {string} type, input type, ex: input, email ...
- * @param {string} defaultText, default input placeholder
- * @param {string} id, your id
+ * @param {string} type input type, ex: input, email ...
+ * @param {string} defaultText default input placeholder
+ * @param {string} id your id
  * @param {array/string} classes, element's class, can be array of string or string
  * @return HTML dom input
  */
@@ -92,10 +92,10 @@ var input = $g.createInput("input", "please input text");
 /**
  * createLink
  *
- * @param {string} href, location
- * @param {string} text, text to show
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} href location
+ * @param {string} text text to show
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom a
  */
 var a = $g.createLink(href, text, id, classes);
@@ -112,10 +112,10 @@ var a = $g.createLink("#", "header", "header_link", "brand-logo");
 /**
  * createSelect
  *
- * @param {string} id, your id
- * @param {[{value, text},...]} options, array of object 
- * @param {array/string} classes, element's class, can be array of string or string
- * @param {string} initText, init text
+ * @param {string} id your id
+ * @param {[{value, text},...]} options array of object 
+ * @param {array/string} classes, element's class can be array of string or string
+ * @param {string} initText init text
  * @return HTML dom select
  */
 var select = $g.createSelect(id, options, classes, initText);
@@ -132,6 +132,26 @@ var select = $g.createSelect("select",
 ```
 
 
+* updateSelectOptions
+
+```js
+/**
+ * updateSelectOptions
+ *
+ * @param {string} id target select element's id
+ * @param {[{value, text},...]} options array of object 
+ * @param {string} initText init text
+ */
+$g.updateSelectOptions(id, options, initText);
+
+//ex:
+$g.updateSelectOptions("selectID2",[
+    {"value": "select1", "text": "this is 1"},
+    {"value": "select2", "text": "this is 2"},
+    {"value": "select3", "text": "this is 3"}
+]);
+
+```
 
 ## Create materialize HTML DOM elements
 
@@ -141,9 +161,9 @@ var select = $g.createSelect("select",
 /**
  * createNavbar
  *
- * @param {string} header, text to show
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} header text to show
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom element
  */
 var nav = $m.createNavbar(header, id, classes);
@@ -160,9 +180,9 @@ var nav = $m.createNavbar("LOGO", "nav", "blue");
 /**
  * createBtn
  *
- * @param {string} text, button text
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} text button text
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom button
  */
 var btn = $m.createBtn(text, id, classes);
@@ -179,9 +199,9 @@ var btn = $m.createBtn("Click me!");
 /**
  * createSideNav
  *
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
- * @param {array} objects, array of HTML dom element
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
+ * @param {array} objects array of HTML dom element
  * @return HTML dom element
  */
 var side = $m.createSideNav(id, classes, objects);
@@ -198,10 +218,10 @@ var side = $m.createSideNav("side");
 /**
  * openSideNavBtn
  *
- * @param {string} text, button text
- * @param {string} sideNavId, your sideNav's id
- * @param {string} id, your id
- * @param {array/string} classes, element's class, can be array of string or string
+ * @param {string} text button text
+ * @param {string} sideNavId your sideNav's id
+ * @param {string} id your id
+ * @param {array/string} classes element's class, can be array of string or string
  * @return HTML dom element
  */
 var openSide = $m.openSideNavBtn(text, sideNavId, id, classes);

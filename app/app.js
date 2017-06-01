@@ -21,6 +21,7 @@
 
 
     var input = $g.createInput("input", "please input text");
+    var radio = $g.createInput("radio");
     var select = $g.createSelect("selectID", [
         {"value": "select1", "text": "this is 1"},
         {"value": "select2", "text": "this is 2"},
@@ -37,7 +38,7 @@
 
         };
 
-    var select2 = $g.createSelect("selectID2", [], null, "please select");
+    var select2 = $g.createSelect("selectID2", [{"value": "select1111", "text": "s 1"}], null, "please select 2");
 
 
 
@@ -51,6 +52,7 @@
          app.appendChild(btn);
          app.appendChild(Mbtn);
          app.appendChild(input);
+         app.appendChild(radio);
  app.appendChild(select);
  app.appendChild(select2);
 })();

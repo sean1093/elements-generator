@@ -36,7 +36,12 @@
             }
             return eClasses;
         },
-        appendOptions: function(s, options) {
+        appendOptions: function(s, options, initText) {
+            var optsDisabled = $g.createElement("option");
+            optsDisabled.disabled = "disabled";
+            optsDisabled.selected = "selected";
+            optsDisabled.innerText = initText || "Choose your option";
+            s.appendChild(optsDisabled);
             if(_innerTool.isNull(options)) {
                 for(var o in options) {
                     var opts = $g.createElement("option", options[o].value);
@@ -71,7 +76,9 @@
         createInput: function(type, defaultText, id, classes) {
             var i = $g.createElement("input", id, classes);
             i.type = type;
-            i.placeholder = defaultText;
+            if(defaultText) {
+                i.placeholder = defaultText;
+            }           
             return i;
         },
         createLink: function(href, text, id, classes) {
@@ -82,17 +89,13 @@
         },
         createSelect: function(id, options, classes, initText) {
             var s = $g.createElement("select", id, classes);
-            var optsDisabled = $g.createElement("option");
-            optsDisabled.disabled = "disabled";
-            optsDisabled.selected = "selected";
-            optsDisabled.innerText = initText || "Choose your option";
-            s.appendChild(optsDisabled);
-            _innerTool.appendOptions(s, options);
+            _innerTool.appendOptions(s, options, initText);
             return s;
         },
-        updateSelectOptions: function(id, options) {
-            var select = document.getElementById(id);
-            _innerTool.appendOptions(select, options);
+        updateSelectOptions: function(id, options, initText) {
+            var s = document.getElementById(id);
+            s.innerHTML = null;
+            _innerTool.appendOptions(s, options, initText);
             if(_materialEnable) {
                 $('select').material_select();
             }
