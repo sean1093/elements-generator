@@ -21,10 +21,22 @@
 
 
     var input = $g.createInput("input", "please input text");
-    var radio = $g.createInput("radio");
+
+    var radio_config = {
+        "type": $g.MUTIPLE, // sinle, mutiple
+        "value": [
+            {"id": "r1", "value":30, "text": "radio1"},
+            {"id": "r2", "value":40, "text": "radio2"},
+            {"id": "r3", "value":50, "text": "radio3"},
+            {"id": "r4", "value":60, "text": "radio4"}
+        ]
+    };
+    var radio = $g.createRadio("radio", radio_config);
+
+
     var select = $g.createSelect("selectID", [
-        {"value": "select1", "text": "this is 1"},
-        {"value": "select2", "text": "this is 2"},
+        {"value": "select1", "text": "this is 1", "type": "checkbox"},
+        {"value": "select2", "text": "this is 2", "type": "radio"},
         {"value": "select3", "text": "this is 3"}
         ], null, "please select");
         select.onchange = function(e) {

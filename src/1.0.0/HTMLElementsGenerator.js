@@ -1,7 +1,7 @@
 /**
  * HTMLElementsGenerator.js
  *
- * @version: v1.0.1 - dev
+ * @version: v1.0.0
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/elements-generator/blob/master/LICENSE)
  */
@@ -60,8 +60,6 @@
     };
 
     var $g = {
-        SINGLE: "single",
-        MUTIPLE: "mutiple",
         createElement: function(type, id, classes) {
             if(!type) return null;
             id = id || _innerTool.getRandomId(type);           
@@ -83,29 +81,6 @@
             }           
             return i;
         },
-        createRadio: function(id, config, classes) {
-            var d = document.createElement("div", id);
-            if(!_innerTool.isNull(config)) return d;
-            var value = config.value;
-            var name = _innerTool.getRandomId("radioName");
-            for(var i = 0; i < value.length; i++) {
-                var innerName = name;
-                //The radio buttons must have a same name, if you want only one of them to be avaliable
-                if(config.type == $g.MUTIPLE) {
-                    innerName += i; 
-                }
-                var subId = value[i].id || _innerTool.getRandomId("radio");
-                var r = $g.createInput("radio", null, subId, classes);
-                r.name = innerName;
-                r.value = value[i].value;
-                var l = $g.createElement("label");
-                l.setAttribute("for", subId);
-                l.innerText = value[i].text;
-                d.appendChild(r);
-                d.appendChild(l);
-            }
-            return d;
-        },
         createLink: function(href, text, id, classes) {
             var a = $g.createElement("a", id, classes);
             a.href = href;
@@ -114,23 +89,13 @@
         },
         createSelect: function(id, options, classes, initText) {
             var s = $g.createElement("select", id, classes);
-            if(Array.isArray(options)) {
-                _innerTool.appendOptions(s, options, initText);
-            }
-            else {
-
-            }           
+            _innerTool.appendOptions(s, options, initText);
             return s;
         },
         updateSelectOptions: function(id, options, initText) {
             var s = document.getElementById(id);
             s.innerHTML = null;
-            if(Array.isArray(options)) {
-                _innerTool.appendOptions(s, options, initText);
-            }
-            else {
-                
-            }
+            _innerTool.appendOptions(s, options, initText);
             if(_materialEnable) {
                 $('select').material_select();
             }
