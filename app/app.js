@@ -23,7 +23,7 @@
     var input = $g.createInput("input", "please input text");
 
     var radio_config = {
-        "type": $g.MUTIPLE, // sinle, mutiple
+        "radioType": $g.MUTIPLE, // sinle, mutiple
         "value": [
             {"id": "r1", "value":30, "text": "radio1"},
             {"id": "r2", "value":40, "text": "radio2"},
@@ -52,6 +52,18 @@
 
     var select2 = $g.createSelect("selectID2", [{"value": "select1111", "text": "s 1"}], null, "please select 2");
 
+    var select_config = {
+        "type": "radio",
+        "radioType": $g.MUTIPLE, // sinle, mutiple
+        "value": [
+            {"id": "r1", "value":30, "text": "radio1"},
+            {"id": "r2", "value":40, "text": "radio2"},
+            {"id": "r3", "value":50, "text": "radio3"},
+            {"id": "r4", "value":60, "text": "radio4"}
+        ]
+    };
+    var select3 = $g.createSelect("selectID3", select_config, null, "please select 3");
+
 
 
     var app = document.getElementById("app");
@@ -60,11 +72,16 @@
     app.appendChild(openSide);
 
     app.appendChild(div);
-         app.appendChild(div2);
-         app.appendChild(btn);
-         app.appendChild(Mbtn);
-         app.appendChild(input);
-         app.appendChild(radio);
- app.appendChild(select);
- app.appendChild(select2);
+    app.appendChild(div2);
+    app.appendChild(btn);
+    app.appendChild(Mbtn);
+    app.appendChild(input);
+    app.appendChild(radio);
+
+    app.appendChild(select);
+    app.appendChild(select2);
+    app.appendChild(select3);
+
+
+
 })();

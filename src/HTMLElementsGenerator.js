@@ -91,7 +91,7 @@
             for(var i = 0; i < value.length; i++) {
                 var innerName = name;
                 //The radio buttons must have a same name, if you want only one of them to be avaliable
-                if(config.type == $g.MUTIPLE) {
+                if(config.radioType == $g.MUTIPLE) {
                     innerName += i; 
                 }
                 var subId = value[i].id || _innerTool.getRandomId("radio");

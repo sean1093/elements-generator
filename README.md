@@ -153,6 +153,37 @@ $g.updateSelectOptions("selectID2",[
 
 ```
 
+
+* createRadio
+
+```js
+/**
+ * createRadio
+ *
+ * @param {string} id your id
+ * @param {object} config array of object 
+ * @param {array/string} classes, element's class can be array of string or string
+ * @return HTML dom radio(input)
+ */
+var radio = $g.createSelect(id, config, classes);
+
+//ex:
+var radio_config = {
+    "radioType": $g.MUTIPLE, // $g.SINGLE or $g.MUTIPLE
+    "value": [
+        {"id": "r1", "value":30, "text": "radio1"},
+        {"id": "r2", "value":40, "text": "radio2"},
+        {"id": "r3", "value":50, "text": "radio3"},
+        {"id": "r4", "value":60, "text": "radio4"}
+    ]
+};
+var radio = $g.createRadio("radio", radio_config);
+
+```
+
+
+
+
 ## Create materialize HTML DOM elements
 
 * createNavbar
