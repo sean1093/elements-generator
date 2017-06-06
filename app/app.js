@@ -21,6 +21,7 @@
 
 
     var input = $g.createInput("input", "please input text");
+    var input_m = $m.createInput("please input text");
 
     var radio_config = {
         "radioType": $g.MUTIPLE, // sinle, mutiple
@@ -62,26 +63,31 @@
             {"id": "r4", "value":60, "text": "radio4"}
         ]
     };
-    var select3 = $g.createSelect("selectID3", select_config, null, "please select 3");
+    // var select3 = $g.createSelect("selectID3", select_config, null, "please select 3");
 
 
+    var f = function() {
+        var fa = document.createDocumentFragment();
+        fa.appendChild(nav);
+        fa.appendChild(side);
+        fa.appendChild(openSide);
 
+        fa.appendChild(div);
+        fa.appendChild(div2);
+        fa.appendChild(btn);
+        fa.appendChild(Mbtn);
+        fa.appendChild(input);
+        fa.appendChild(input_m);
+        fa.appendChild(radio);
+
+        fa.appendChild(select);
+        fa.appendChild(select2);
+        // fa.appendChild(select3);
+        return fa;
+    }();
+
+    
     var app = document.getElementById("app");
-    app.appendChild(nav);
-    app.appendChild(side);
-    app.appendChild(openSide);
-
-    app.appendChild(div);
-    app.appendChild(div2);
-    app.appendChild(btn);
-    app.appendChild(Mbtn);
-    app.appendChild(input);
-    app.appendChild(radio);
-
-    app.appendChild(select);
-    app.appendChild(select2);
-    app.appendChild(select3);
-
-
+    app.appendChild(f);
 
 })();

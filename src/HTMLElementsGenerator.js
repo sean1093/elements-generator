@@ -37,19 +37,21 @@
             return eClasses;
         },
         appendOptions: function(s, options, initText) {
+            var f = document.createDocumentFragment();
             var optsDisabled = $g.createElement("option");
             optsDisabled.disabled = "disabled";
             optsDisabled.selected = "selected";
             optsDisabled.innerText = initText || "Choose your option";
-            s.appendChild(optsDisabled);
+            f.appendChild(optsDisabled);
             if(_innerTool.isNull(options)) {
                 for(var o in options) {
                     var opts = $g.createElement("option", options[o].value);
                     opts.value = options[o].value;
                     opts.innerText = options[o].text;
-                    s.appendChild(opts);
+                    f.appendChild(opts);
                 } 
             }
+            s.appendChild(f);
         },
         getRandomId: function(type) {
             return type + "_" + Math.floor(Math.random()*100000);
@@ -84,6 +86,7 @@
             return i;
         },
         createRadio: function(id, config, classes) {
+            var f = document.createDocumentFragment();
             var d = document.createElement("div", id);
             if(!_innerTool.isNull(config)) return d;
             var value = config.value;
@@ -101,9 +104,10 @@
                 var l = $g.createElement("label");
                 l.setAttribute("for", subId);
                 l.innerText = value[i].text;
-                d.appendChild(r);
-                d.appendChild(l);
+                f.appendChild(r);
+                f.appendChild(l);
             }
+            d.appendChild(f);
             return d;
         },
         createLink: function(href, text, id, classes) {
@@ -116,10 +120,7 @@
             var s = $g.createElement("select", id, classes);
             if(Array.isArray(options)) {
                 _innerTool.appendOptions(s, options, initText);
-            }
-            else {
-
-            }           
+            }          
             return s;
         },
         updateSelectOptions: function(id, options, initText) {
@@ -127,9 +128,6 @@
             s.innerHTML = null;
             if(Array.isArray(options)) {
                 _innerTool.appendOptions(s, options, initText);
-            }
-            else {
-                
             }
             if(_materialEnable) {
                 $('select').material_select();
@@ -142,6 +140,7 @@
         createNavbar : function(header, id, classes) {
             $m.enable();
             var mClasses = "navbar-fixed";
+            var f = document.createDocumentFragment();
             classes = _innerTool.appendClassesToExistClass(classes, mClasses);
             var outer = $g.createElement("div", id, "navbar-fixed");
             var nav = $g.createElement("nav", undefined, classes);
@@ -149,7 +148,8 @@
             var a = $g.createLink("#", header, "header_link", "brand-logo");
             inner.appendChild(a);
             nav.appendChild(inner);
-            outer.appendChild(nav);
+            f.appendChild(nav);
+            outer.appendChild(f);
             return outer;
         },
         createBtn: function(text, id, classes) {
@@ -182,6 +182,25 @@
             var b = $m.createBtn(text, id, classes);
             b.setAttribute("data-activates", sideNavId);
             return b;
+        },
+        createSelect: function(id, options, classes, initText) {
+            $m.enable();
+            return $g.createSelect(id, options, classes, initText);
+        },
+        createInput: function(defaultText, id, classes) {
+            $m.enable();
+            id = id || _innerTool.getRandomId("input");
+            var mClasses = "validate";
+            classes = _innerTool.appendClassesToExistClass(classes, mClasses);
+            var f = document.createDocumentFragment();
+            var outer = $g.createElement("div", _innerTool.getRandomId("div"), "input-field");
+            var i = $g.createInput("text", defaultText, id, classes);
+            var l = $g.createElement("label");
+                l.setAttribute("for", id);
+            f.appendChild(i);
+            f.appendChild(l);
+            outer.appendChild(f);
+            return outer;
         }
     };
 
@@ -189,6 +208,7 @@
         if(_materialEnable) {
             $('select').material_select();
             $('.open-side').sideNav();
+            // Materialize.updateTextFields();
         }
     });
 
