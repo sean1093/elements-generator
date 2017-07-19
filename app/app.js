@@ -8,20 +8,20 @@
 (function () {
     "use strict";
 
-    var nav = $m.createNavbar("LOGO", "nav", "blue");
-    var side = $m.createSideNav("side");
-    var openSide = $m.openSideNavBtn("Open Side", "side", "openSide");
+    // var nav = $m.createNavbar("LOGO", "nav", "blue");
+    // var side = $m.createSideNav("side");
+    // var openSide = $m.openSideNavBtn("Open Side", "side", "openSide");
     
 
-    var div = $g.createElement("div");
-    var div2 = $g.createElement("div", "id", ["a", "tag"]);
+    // var div = $g.createElement("div");
+    // var div2 = $g.createElement("div", "id", ["a", "tag"]);
 
-    var btn = $g.createBtn("this is btn");
-    var Mbtn = $m.createBtn("this is btn", "M_btn", "blue");
+    // var btn = $g.createBtn("this is btn");
+    // var Mbtn = $m.createBtn("this is btn", "M_btn", "blue");
 
 
-    var input = $g.createInput("input", "please input text");
-    var input_m = $m.createInput("please input text");
+    // var input = $g.createInput("input", "please input text");
+    // var input_m = $m.createInput("please input text");
 
     var radio_config = {
         "radioType": $g.MUTIPLE, // sinle, mutiple
@@ -63,27 +63,29 @@
             {"id": "r4", "value":60, "text": "radio4"}
         ]
     };
-    // var select3 = $g.createSelect("selectID3", select_config, null, "please select 3");
+    var select3 = $g.createSelect("selectID3", select_config, null, "please select 3");
 
 
     var f = function() {
-        var fa = document.createDocumentFragment();
-        fa.appendChild(nav);
-        fa.appendChild(side);
-        fa.appendChild(openSide);
+        var fragment = document.createDocumentFragment();
+        // fragment.appendChild(nav);
+        // ffragmenta.appendChild(side);
+        // fragment.appendChild(openSide);
 
-        fa.appendChild(div);
-        fa.appendChild(div2);
-        fa.appendChild(btn);
-        fa.appendChild(Mbtn);
-        fa.appendChild(input);
-        fa.appendChild(input_m);
-        fa.appendChild(radio);
+        // fragment.appendChild(div);
+        // fragment.appendChild(div2);
+        // fragment.appendChild(btn);
+        // fragment.appendChild(Mbtn);
+        // fragment.appendChild(input);
+        // fragment.appendChild(input_m);
+        fragment.appendChild(radio);
 
-        fa.appendChild(select);
-        fa.appendChild(select2);
-        // fa.appendChild(select3);
-        return fa;
+        fragment.appendChild(select);
+        fragment.appendChild(select2);
+        fragment.appendChild(select3);
+
+
+        return fragment;
     }();
 
     

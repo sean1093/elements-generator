@@ -123,6 +123,9 @@
             }          
             return s;
         },
+        createDropdown: function(id, options, classes, initText) {
+
+        },
         updateSelectOptions: function(id, options, initText) {
             var s = document.getElementById(id);
             s.innerHTML = null;
