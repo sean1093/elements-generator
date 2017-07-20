@@ -186,6 +186,31 @@
             b.setAttribute("data-activates", sideNavId);
             return b;
         },
+        createTabs: function(id, config) { // config {"title", "herf", "class"}
+            var outer = $g.createElement("div", null, "col s12");
+            var ul = $g.createElement("ul", id, "tabs"); 
+            if(_innerTool.isNull(config)) { 
+                console.log(config.length);
+                var unit = Math.floor(12/config.length);
+                console.log(unit);
+                var flag = true;
+                for(var o in config) {
+                    var a = $g.createElement("a", null);
+                    a.innerText = config[o].title;
+                    a.href = config[o].href;
+                    if(flag) {
+                       a.className += "active";
+                       flag = false;  
+                    }                   
+                    var li = $g.createElement("li");
+                    li.className = "tab col s"+unit;
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                } 
+            }
+            outer.appendChild(ul);
+            return outer;
+        },
         createSelect: function(id, options, classes, initText) {
             $m.enable();
             return $g.createSelect(id, options, classes, initText);
